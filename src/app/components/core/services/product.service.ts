@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Product } from '../../shared/models/Product.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,13 +10,13 @@ import { Product } from '../../shared/models/Product.model';
 })
 export class ProductService {
 
-  private productUrl = 'http://localhost:8080/product';
-  private apiServerUrl = 'http://localhost:8080/product_category';
+  private productUrl = `${environment.apiUrl}/product`;
+  private apiServerUrl = `${environment.apiUrl}/product_category`;
 
   constructor(private http: HttpClient) { }
 
   public getProducts(): Observable<any> {
-    return this.http.get<Product[]>(`http://localhost:8080/product`)
+    return this.http.get<Product[]>(`${environment.apiUrl}/product`)
   }
 
   createProduct(formData:FormData): Observable<object> {  
@@ -50,7 +51,7 @@ export class ProductService {
     sortField:string,
     sortOrder:string
     ):Observable<any>{
-    return this.http.get(`http://localhost:8080/product/paginate`,
+    return this.http.get(`${environment.apiUrl}/product/paginate`,
       { params:new HttpParams()
        .set('page',pageNumber.toString()) 
        .set('size',pageSize.toString())

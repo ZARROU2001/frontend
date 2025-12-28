@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { Category } from "../../shared/models/Category.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({
    providedIn: 'root'
@@ -10,7 +11,7 @@ import { Category } from "../../shared/models/Category.model";
 export class CategoryService {
    
 
-   CategoriesURL='http://localhost:8080/product_category';
+   CategoriesURL=`${environment.apiUrl}/product_category`;
    
    constructor(private http:HttpClient){ }
    
@@ -39,7 +40,7 @@ export class CategoryService {
       sortField:string,
       sortOrder:string
       ):Observable<any>{
-      return this.http.get(`http://localhost:8080/product_category/paginate`,
+      return this.http.get(`${environment.apiUrl}/product_category/paginate`,
         { params:new HttpParams()
          .set('page',pageNumber.toString()) 
          .set('size',pageSize.toString())

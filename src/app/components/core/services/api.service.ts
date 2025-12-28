@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 
 export class ApiService {
-    URL='http://localhost:8080';
+    URL=`${environment.apiUrl}`;
 
     constructor(private http:HttpClient){ } 
 

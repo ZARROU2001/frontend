@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { user } from "../../shared/models/user.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({
    providedIn: 'root'
@@ -9,8 +10,8 @@ import { user } from "../../shared/models/user.model";
 
 export class UserService {
 
-   usersURL='http://localhost:8080/user';
-   userPaginationUrl='http://localhost:8080/user/paginate';
+   usersURL=`${environment.apiUrl}/user`;
+   userPaginationUrl=`${environment.apiUrl}/user/paginate`;
    userUpdate=''
    constructor(private http:HttpClient){ } 
    

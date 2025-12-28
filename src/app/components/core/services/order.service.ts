@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Order } from '../../shared/models/order.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OrderService {
-    private orderUrl = 'http://localhost:8080/order';
+    private orderUrl = `${environment.apiUrl}/order`;
 
     constructor(private http: HttpClient) {}
 
@@ -21,7 +22,7 @@ export class OrderService {
         sortField:string,
         sortOrder:string
         ):Observable<any>{
-        return this.http.get(`http://localhost:8080/order/paginate`,
+        return this.http.get(`${environment.apiUrl}/order/paginate`,
           { params:new HttpParams()
            .set('page',pageNumber.toString()) 
            .set('size',pageSize.toString())

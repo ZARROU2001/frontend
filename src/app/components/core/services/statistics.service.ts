@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class StatisticsService {
 
-  private baseUrl = 'http://localhost:8080/api/statistics'; // Adjust backend URL if needed
+  private baseUrl = `${environment.apiUrl}/api/statistics`; // Adjust backend URL if needed
 
   constructor(private http: HttpClient) { }
 
