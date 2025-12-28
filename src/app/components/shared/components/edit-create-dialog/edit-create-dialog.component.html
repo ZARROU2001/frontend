@@ -1,97 +1,106 @@
 <div class="create-dialog-box scrollable-dialog">
-    <div class="title d-flex align-items-center justify-content-space-between">
-        <h4 class="mb-0">{{data.title}}</h4>
-        <button mat-dialog-close class="close-btn bg-transparent p-0 border-none" ><i class="flaticon-close"></i></button>
-    </div>
-    <form [formGroup]="empForm">
-        <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label class="d-block fw-semibold">Product Name</label>
-                  <mat-form-field appearance="outline">
-                    <input matInput placeholder="Name" class="input-control" formControlName="name">
-                    <mat-error *ngIf="empForm.get('name')?.hasError('required') && empForm.get('name')?.touched">
-                       name is required.
-                    </mat-error>
-                    <mat-error *ngIf="empForm.get('name')?.hasError('minlength')">
-                       name must be at least 4 characters long.
-                    </mat-error>
-                  </mat-form-field>
-                </div>
+  <div class="title d-flex align-items-center justify-content-space-between">
+      <h4 class="mb-0">{{data.title}}</h4>
+      <button mat-dialog-close class="close-btn bg-transparent p-0 border-none" ><i class="flaticon-close"></i></button>
+  </div>
+  <form [formGroup]="empForm">
+      <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label class="d-block fw-semibold">Product Name</label>
+                <mat-form-field [ngStyle]="{'width': '100%'}" appearance="outline">
+                  <input matInput placeholder="Name" class="input-control" formControlName="name">
+                  <mat-error *ngIf="empForm.get('name')?.hasError('required') && empForm.get('name')?.touched">
+                     name is required.
+                  </mat-error>
+                  <mat-error *ngIf="empForm.get('name')?.hasError('minlength')">
+                     name must be at least 4 characters long.
+                  </mat-error>
+                </mat-form-field>
               </div>
+            </div>
 
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label class="d-block fw-semibold">Product Quantity</label>
-                  <mat-form-field appearance="outline">
-                    <input matInput type="number" min="0" placeholder="quantity" class="input-control" formControlName="quantity">
-                    <mat-error *ngIf="empForm.get('quantity')?.hasError('required') && empForm.get('quantity')?.touched">
-                      Quantity is required.
-                    </mat-error>
-                  </mat-form-field>
-                </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label class="d-block fw-semibold">Product Quantity</label>
+                <mat-form-field appearance="outline">
+                  <input matInput type="number" min="0" placeholder="quantity" class="input-control" formControlName="quantity">
+                  <mat-error *ngIf="empForm.get('quantity')?.hasError('required') && empForm.get('quantity')?.touched">
+                    Quantity is required.
+                  </mat-error>
+                </mat-form-field>
               </div>
+            </div>
 
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label class="d-block fw-semibold">Product Price</label>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                  <label class="d-block fw-semibold">Category</label>
                   <mat-form-field appearance="outline">
-                    <input matInput type="number" min="0" placeholder="price" class="input-control" formControlName="price">
-                    <mat-error *ngIf="empForm.get('price')?.hasError('required') && empForm.get('price')?.touched">
-                      Price is required.
+                    
+                    <mat-select matInput   formControlName="category" placeholder="Select">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let category of categories" [value]="category.categoryName">{{category.categoryName}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="empForm.get('category')?.hasError('required') && empForm.get('category')?.touched">
+                       Category is required.   
                     </mat-error>
                   </mat-form-field>
-                </div>
+                  
               </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label class="d-block fw-semibold">Price Before Discount (optional) </label>
+                <mat-form-field appearance="outline">
+                  <input matInput type="number" min="0" placeholder="priceBeforeDiscount" class="input-control" formControlName="priceBeforeDiscount">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label class="d-block fw-semibold">Price After Discount</label>
+                <mat-form-field appearance="outline">
+                  <input matInput type="number" min="0" placeholder="priceAfterDiscount" class="input-control" formControlName="priceAfterDiscount">
+                  <mat-error *ngIf="empForm.get('priceAfterDiscount')?.hasError('required') && empForm.get('priceAfterDiscount')?.touched">
+                    Price is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                  <label class="d-block fw-semibold">Description</label>
+                  <mat-form-field appearance="outline">
+                    <textarea matInput class="input-control" formControlName="description" placeholder="Write a Description"></textarea>
+                    <mat-error *ngIf="empForm.get('description')?.hasError('required') && empForm.get('description')?.touched">
+                       Description is required.
+                    </mat-error>
+                    <mat-error *ngIf="empForm.get('description')?.hasError('minlength')">
+                       Description must be at least 4 characters long.
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+            </div>
+       
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                  <label class="d-block fw-semibold">image</label>
+                  <input type="file" class="input-control" (change)="onSelectFile($event)">
+                  <img  [src]="imgURL ?? 'http://localhost:8080/images/product/' + productId " height="200">
+                  
+              </div>
+            </div>
           
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="d-block fw-semibold">Category</label>
-                    <mat-form-field appearance="outline">
-                      
-                      <mat-select matInput   formControlName="category" placeholder="Select">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let category of categories" [value]="category.categoryName">{{category.categoryName}}</mat-option>
-                      </mat-select>
-                      <mat-error *ngIf="empForm.get('category')?.hasError('required') && empForm.get('category')?.touched">
-                         Category is required.   
-                      </mat-error>
-                    </mat-form-field>
-                    
-                </div>
-              </div>
-        
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="d-block fw-semibold">Description</label>
-                    <mat-form-field appearance="outline">
-                      <textarea matInput class="input-control" formControlName="description" placeholder="Write a Description"></textarea>
-                      <mat-error *ngIf="empForm.get('description')?.hasError('required') && empForm.get('description')?.touched">
-                         Description is required.
-                      </mat-error>
-                      <mat-error *ngIf="empForm.get('description')?.hasError('minlength')">
-                         Description must be at least 4 characters long.
-                      </mat-error>
-                    </mat-form-field>
-                </div>
-              </div>
-         
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <label class="d-block fw-semibold">image</label>
-                    <input type="file" class="input-control" (change)="onSelectFile($event)">
-                    <img  [src]="imgURL" height="200">
-                    
-                </div>
-              </div>
-            
-        </div>
-        <div class="text-end">
-            <button mat-dialog-close type="button" class="gray" ><i class="ri-close-fill"></i> Cancel</button>
-            <button  mat-flat-button class="save buttons default-btn tagus " (click)="onSubmit()" >
-              {{data.actionButtonText === "Create" ? "Save" : "Update"}} 
-              <mat-icon>{{data.actionButtonText === "Create" ? "add" : "edit"}}</mat-icon>
-            </button>
-        </div>
-    </form>
+      </div>
+      <div class="text-end">
+          <button mat-dialog-close type="button" class="gray" ><i class="ri-close-fill"></i> Cancel</button>
+          <button  mat-flat-button class="save buttons default-btn tagus " (click)="onSubmit()" >
+            {{data.actionButtonText === "Create" ? "Save" : "Update"}} 
+            <mat-icon>{{data.actionButtonText === "Create" ? "add" : "edit"}}</mat-icon>
+          </button>
+      </div>
+  </form>
 </div>

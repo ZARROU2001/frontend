@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit,AfterViewInit{
     userRole:string;
     firstName?:string;
     lastName?:string;
-    image?:string;
+    imageId?:string;
     @HostListener('window:scroll', ['$event'])
     checkScroll() {
         const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit,AfterViewInit{
             this.firstName=userData.user.firstName;
             this.lastName=userData.user.lastName;
             this.userRole=userData.user.role.name;
-            this.image=userData.user.imageUrl;
+            this.imageId=userData.user.imageUrl;
         })
     }
 

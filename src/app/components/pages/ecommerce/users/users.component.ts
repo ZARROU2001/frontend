@@ -31,7 +31,7 @@ export class UsersComponent {
     sortActive: string="id";
     endpoint: string="user";
     dataSource =new MatTableDataSource<user>(this.user);
-    displayedColumns: string[]=['id','firstName','lastName','email','role.name','action'];
+    displayedColumns: string[]=['id','firstName','lastName','email','roleName','action'];
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     constructor(
@@ -123,7 +123,7 @@ export class UsersComponent {
         console.log("listData");
         this.userService
         .getUsers().subscribe(data=> {
-          console.log(data.length);
+          console.log(data);
           this.DataNumber=data.length;
           if(data.length==0){
             this.isEmpty=false;
@@ -137,7 +137,7 @@ export class UsersComponent {
         this.dataSource.filter = this.filterValue.trim().toLowerCase();
 
         this.dataSource.filterPredicate = (data: any, filter: string) => {
-          const role = JSON.stringify(data.role.name).toLowerCase();
+          const role = JSON.stringify(data.roleName).toLowerCase();
           const email = JSON.stringify(data.email).toLowerCase();
           const firstName = JSON.stringify(data.firstName).toLowerCase();
           const lastName = JSON.stringify(data.lastName).toLowerCase();

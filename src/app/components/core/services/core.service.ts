@@ -15,7 +15,8 @@ export class CoreService {
       panelClass: 'app-notification-success',
       verticalPosition: 'top',
       horizontalPosition: 'right',
-      duration:4000
+      duration:4000,
+
     });
   }
 

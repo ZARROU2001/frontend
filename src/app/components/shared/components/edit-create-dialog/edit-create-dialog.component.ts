@@ -15,12 +15,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class EditCreateDialogComponent {
   empForm!: FormGroup;
-
   public categories: Category[] = [];
+
   userFile: any;
   message: string = "";
   imgURL: any ;
   imagePath: any;
+  productId: string;
   
   constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,36 +31,35 @@ export class EditCreateDialogComponent {
         private _dialogRef: MatDialogRef<EditCreateDialogComponent> ) {}
   
   ngOnInit(): void {
-    this.listProductCategories();
-    console.log(this.empForm);
+    console.log(this.data)
+    this.listProductCategories()
     this.empForm = this._fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      category: new FormControl('', [Validators.required, Validators.minLength(4)]),
       description: new FormControl('', Validators.required),
+      category: new FormControl('', [Validators.required, Validators.minLength(4)]),
       imageUrl: new FormControl(''),
-      price : new FormControl('',Validators.required),
+      priceBeforeDiscount : new FormControl(''),
+      priceAfterDiscount : new FormControl('',Validators.required),
       quantity : new FormControl('',Validators.required)
     });
 
     if(this.data.Data){
-      console.log(this.data.Data);
+      console.log(this.data.Data.name)
       this.empForm.patchValue({
         name:this.data.Data.name,
         description:this.data.Data.description,
         category:this.data.Data.category.categoryName,
-        price:this.data.Data.price,
+        priceAfterDiscount:this.data.Data.priceAfterDiscount,
+        priceBeforeDiscount:this.data.Data.priceBeforeDiscount,
         quantity:this.data.Data.stockQuantity
       })
-      this.productService.getProductById(this.data.productId).subscribe({
-        next:(data:any)=>{
-        this.imgURL=data.imageUrl ;
-        },
-        error:(err:HttpErrorResponse)=> {
-          this._coreService.openErrorSnackBar(err.error)
-        }
-      })
+      this.productId = this.data.Data.productId
+      console.log("aaa")
+      console.log(this.productId)
+      console.log(this.imgURL)
     }
   }
+
 
   listProductCategories(){
     this.productService.getProductCategories().subscribe(
@@ -79,10 +79,14 @@ export class EditCreateDialogComponent {
         formData.append("description",this.empForm.value.description)
         formData.append("name",this.empForm.value.name)
         formData.append("category",this.empForm.value.category)
+        formData.append("category",this.data.categoryName)
         if(this.userFile !=null){
           formData.append("imageUrl", this.userFile);
         }
-        formData.append("price",this.empForm.value.price)
+        formData.append("priceAfterDiscount",this.empForm.value.priceAfterDiscount)
+        if(this.empForm.value.priceBeforeDiscount) {
+          formData.append("priceBeforeDiscount",this.empForm.value.priceBeforeDiscount)
+        }
         formData.append("stockQuantity",this.empForm.value.quantity)   
         this.productService 
           .updateProduct(this.data.productId, formData)
@@ -103,7 +107,10 @@ export class EditCreateDialogComponent {
         formData.append("name",this.empForm.value.name)
         formData.append("category",this.empForm.value.category)
         formData.append("imageUrl",this.userFile)
-        formData.append("price",this.empForm.value.price)
+        formData.append("priceAfterDiscount",this.empForm.value.priceAfterDiscount)
+        if(this.empForm.value.priceBeforeDiscount) {
+          formData.append("priceBeforeDiscount",this.empForm.value.priceBeforeDiscount)
+        }
         formData.append("stockQuantity",this.empForm.value.quantity) 
         this.productService.createProduct(formData).subscribe(
           {

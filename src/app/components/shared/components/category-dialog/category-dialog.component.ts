@@ -72,8 +72,8 @@ export class CategoryDialogComponent {
               this._dialogRef.close(true);
             },
             error: (err: HttpErrorResponse) => {
-              console.error(err);
-              this._coreService.openErrorSnackBar(err.error);
+              console.log(err.error.message);
+              this._coreService.openErrorSnackBar(err.error.message);
             },
           });
       } else {
@@ -88,8 +88,8 @@ export class CategoryDialogComponent {
               this._dialogRef.close(true);
             },
             error: (err: any) => {
-              console.error(err);
-              this._coreService.openErrorSnackBar(err.error);
+              console.error(err.error.message);
+              this._coreService.openErrorSnackBar(err.error.message);
             },
           }
         );

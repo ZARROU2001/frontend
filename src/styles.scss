@@ -404,22 +404,25 @@ button {
     }
 }
 
+
 .mat-mdc-snack-bar-container {
-  --mat-mdc-snack-bar-button-color: #ffffff!important;
-  --mdc-snackbar-supporting-text-color: #ffffff;
-
-  &.app-notification-error {
-    --mdc-snackbar-container-color: #f23a2f;
-  }
-
-  &.app-notification-success {
-    --mdc-snackbar-container-color: #43a446;
-  }
+    
+    
+    
+  
+    &.app-notification-error {
+      --mdc-snackbar-container-color: #d32f2f; /* Darker red for better contrast */
+      --mat-snack-bar-button-color: #FFEBEE;
+    }
+  
+    &.app-notification-success {
+      --mdc-snackbar-container-color: #2e7d32; /* Darker green for better readability */
+      --mat-snack-bar-button-color: #E8F5E9;
+    }
+    
 }
-
-::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
-    color: black !important;
-}
+  
+  
 
 .language-menu-dropdown {
     &.mat-mdc-menu-panel {

@@ -111,11 +111,11 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     }
 
     onEdit(data: any): void {
-        console.log(data.productId);
+        console.log(data);
         const dialogConfig = new MatDialogConfig();
         // The user can't close the dialog by clicking outside its body
         dialogConfig.disableClose = true;
-        dialogConfig.width = '500px';
+        dialogConfig.width = '700px';
         dialogConfig.data = {
             title: 'Edit Product',
             actionButtonText: 'edit',
@@ -167,7 +167,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     listData() {
         console.log('listData');
         this.productService.getProducts().subscribe((data) => {
-            console.log(data.length);
+            console.log(data);
             this.DataNumber = data.length;
             if (data.length == 0) {
                 this.isEmpty = true;
@@ -200,7 +200,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         const dialogConfig = new MatDialogConfig();
         // The user can't close the dialog by clicking outside its body
         dialogConfig.disableClose = true;
-        dialogConfig.width = '500px';
+        dialogConfig.width = '700px';
 
         dialogConfig.data = {
             title: 'Create New Product',

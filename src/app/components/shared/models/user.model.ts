@@ -6,7 +6,6 @@ export interface user {
     lastName?:string;
     username?:string;
     email?:string;
-    role?:role;
-    password?:string;
+    roleName?:string;
     imageUrl:string;
 }

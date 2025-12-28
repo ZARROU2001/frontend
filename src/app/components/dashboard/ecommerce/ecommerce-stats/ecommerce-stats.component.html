@@ -3,7 +3,7 @@
         <mat-card class="single-stats-box tagus-card mb-25">
             <div class="d-flex justify-content-space-between align-items-center">
                 <div class="title">
-                    <h3>$25,890</h3>
+                    <h3>${{ totalRevenue }}</h3>
                     <span class="d-block gray-color">Total Sales</span>
                 </div>
                 <div class="icon">
@@ -16,7 +16,7 @@
         <mat-card class="single-stats-box tagus-card mb-25">
             <div class="d-flex justify-content-space-between align-items-center">
                 <div class="title">
-                    <h3>$100.5</h3>
+                    <h3>{{ totalOrders }}</h3>
                     <span class="d-block gray-color">Total Orders</span>
                 </div>
                 <div class="icon">
@@ -29,8 +29,8 @@
         <mat-card class="single-stats-box tagus-card mb-25">
             <div class="d-flex justify-content-space-between align-items-center">
                 <div class="title">
-                    <h3>50</h3>
-                    <span class="d-block gray-color">Total Customers</span>
+                    <h3>{{ totalProductsSold }}</h3>
+                    <span class="d-block gray-color">Total Products Sold</span>
                 </div>
                 <div class="icon">
                     <i class="flaticon-award"></i>

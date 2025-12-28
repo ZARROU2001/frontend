@@ -203,6 +203,7 @@ export class CategoryComponent {
         );
         dialogRef.afterClosed().subscribe((result) => {
             this.loadData();
+            this.listData();
         });
     }
 }

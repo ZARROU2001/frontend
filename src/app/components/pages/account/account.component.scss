@@ -1,16 +1,9 @@
 
 .container {
     display: flex;
-    justify-content:start;
+    justify-content:space-between;
     align-items: start;
     
-    .left-side {
-        padding-right: 200px;
-    }
-
-    .right-side {
-     margin-left: 200px;
-    }
 }
 ::ng-deep .mat-form-field-appearance-outline .mdc-notched-outline__leading
 {

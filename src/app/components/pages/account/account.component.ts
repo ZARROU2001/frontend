@@ -45,7 +45,11 @@ export class AccountComponent implements OnInit{
         if (userDataString) {
           // Parse the string into a JavaScript object
           this.userData = JSON.parse(userDataString).user;
+          console.log("true")
+          console.log(this.userData)
           this.image=this.userData.imageUrl;
+
+          console.log(this.userData.id)
         } else {
           console.log('No user data found in session storage');
         }
